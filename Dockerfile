@@ -16,5 +16,4 @@ RUN python -m pip install --upgrade pip
 RUN pip install requests
 RUN pip install lxml
 
-COPY . .
-RUN python main.py
+COPY main.py ./
