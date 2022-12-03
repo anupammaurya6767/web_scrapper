@@ -1,4 +1,4 @@
-FROM ubuntu:22.10
+FROM ubuntu:18.04
 
 
 apt-get install python3 python3-pip software-properties-common
