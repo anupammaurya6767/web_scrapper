@@ -16,4 +16,6 @@ RUN python -m pip install --upgrade pip
 RUN pip install requests
 RUN pip install lxml
 
+WORKDIR /usr/app/src
+
 COPY main.py ./
