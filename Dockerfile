@@ -1,9 +1,8 @@
 FROM ubuntu:18.04
 
+FROM python:3.7
 
-RUN apt-get install python3 python3-pip software-properties-common
-RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt-get install python3.7
+
 
 # Make python 3.7 the default
 RUN echo "alias python=python3.7" >> ~/.bashrc
