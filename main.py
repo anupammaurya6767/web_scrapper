@@ -73,6 +73,6 @@ while True:
     except Exception as e:
         print(e)
         notice = {"title": "Bot Down", "link": "", "tab": ""}
-        url = 'http://20.205.15.220/by
+        url = 'http://20.205.15.220/by'
         x = requests.post(url, json=notice)
         break
