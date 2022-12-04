@@ -23,7 +23,7 @@ while True:
     doc3 = lxml.html.fromstring(html3.content)                                                                         
     prev_release_data_link = doc3.xpath('//div[@class="headingPara"]//table[@class="facultyTable"]//a/@href')[0]
     prev_notice = {                                                                                                         
-                 "title": title,                                                                                                
+                 "title": prev_title,                                                                                                
                  "link": "https://www.igdtuw.ac.in/" + prev_release_data_link,                                                   
                  "tab": "Notices/Circulars"                                                                                     
              } 
