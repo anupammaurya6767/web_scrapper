@@ -12,6 +12,7 @@ prev = doc.xpath(
 
 print("running")
 while True:
+    time.sleep(30)
     prev_title =  doc.xpath(
                 '//div[@class="container"]/div[@class="row"]//div[@class="col-sm-7"]/div[@class="bigBox"]/div[@class="bigBoxDiv"]/ul[@class="ENABox Events"]/li/a/text()'
             )[0]
