@@ -8,7 +8,7 @@ doc = lxml.html.fromstring(html.content)
 
 prev = doc.xpath(
     '//div[@class="container"]/div[@class="row"]//div[@class="col-sm-7"]/div[@class="bigBox"]/div[@class="bigBoxDiv"]/ul[@class="ENABox Events"]/li/a'
-)[0]
+)[1]
 
 print("running")
 while True:
@@ -31,8 +31,8 @@ while True:
     
     url3 = 'http://20.205.15.220/last'
     data3 = json.dumps(prev_notice)
-    x3 = requests.post(url3, json=prev_notice)
-    print(x3.text)
+#     x3 = requests.post(url3, json=prev_notice)
+#     print(x3.text)
     try:
         prev_hash = hash(prev)
         new_release = doc.xpath(
