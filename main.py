@@ -8,11 +8,10 @@ doc = lxml.html.fromstring(html.content)
 
 prev = doc.xpath(
     '//div[@class="container"]/div[@class="row"]//div[@class="col-sm-7"]/div[@class="bigBox"]/div[@class="bigBoxDiv"]/ul[@class="ENABox Events"]/li/a'
-)[1]
+)[0]
 
 print("running")
 while True:
-    time.sleep(30)
     prev_title =  doc.xpath(
                 '//div[@class="container"]/div[@class="row"]//div[@class="col-sm-7"]/div[@class="bigBox"]/div[@class="bigBoxDiv"]/ul[@class="ENABox Events"]/li/a/text()'
             )[0]
@@ -29,8 +28,8 @@ while True:
                  "tab": "Notices/Circulars"                                                                                     
              } 
     
-    url3 = 'http://20.205.15.220/last'
-    data3 = json.dumps(prev_notice)
+#     url3 = 'http://20.205.15.220/last'
+#     data3 = json.dumps(prev_notice)
 #     x3 = requests.post(url3, json=prev_notice)
 #     print(x3.text)
     try:
