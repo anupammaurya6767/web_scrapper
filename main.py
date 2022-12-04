@@ -28,11 +28,14 @@ while True:
             )[0]
 
 
-            notice = {
-                "title": title,
-                "link": "https://www.igdtuw.ac.in/" + link,
-                "tab": "Notices/Circulars"
-            }
+             html2 = requests.get("https://www.igdtuw.ac.in/"+link)                                                             
+             doc2 = lxml.html.fromstring(html2.content)                                                                         
+             new_release_data_link = doc2.xpath('//div[@class="headingPara"]//table[@class="facultyTable"]//a/@href')[0]                                                                                              
+             notice = {                                                                                                         
+                 "title": title,                                                                                                
+                 "link": "https://www.igdtuw.ac.in/" + new_release_data_link,                                                   
+                 "tab": "Notices/Circulars"                                                                                     
+             }                                                                                                                  
             url = 'http://20.205.15.220/by'
             data = json.dumps(notice)
             x = requests.post(url, json=notice)
