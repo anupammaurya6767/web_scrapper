@@ -12,6 +12,26 @@ prev = doc.xpath(
 
 print("running")
 while True:
+    prev_title =  doc.xpath(
+                '//div[@class="container"]/div[@class="row"]//div[@class="col-sm-7"]/div[@class="bigBox"]/div[@class="bigBoxDiv"]/ul[@class="ENABox Events"]/li/a/text()'
+            )[0]
+    
+    prev_link = doc.xpath(
+                '//div[@class="container"]/div[@class="row"]//div[@class="col-sm-7"]/div[@class="bigBox"]/div[@class="bigBoxDiv"]/ul[@class="ENABox Events"]/li/a/@href'
+            )[0]
+    html3 = requests.get("https://www.igdtuw.ac.in/"+prev_link)                                                             
+    doc2 = lxml.html.fromstring(html2.content)                                                                         
+    prev_release_data_link = doc2.xpath('//div[@class="headingPara"]//table[@class="facultyTable"]//a/@href')[0]
+    prev_notice = {                                                                                                         
+                 "title": title,                                                                                                
+                 "link": "https://www.igdtuw.ac.in/" + prev_release_data_link,                                                   
+                 "tab": "Notices/Circulars"                                                                                     
+             } 
+    
+    url2 = 'http://20.205.15.220/last'
+    data2 = json.dumps(prev_notice)
+    x2 = requests.post(url2, json=prev_notice)
+    print(x2.text)
     try:
         prev_hash = hash(prev)
         new_release = doc.xpath(
@@ -52,6 +72,6 @@ while True:
     except Exception as e:
         print(e)
         notice = {"title": "Bot Down", "link": "", "tab": ""}
-        url = 'http://localhost:3000/'
+        url = 'http://20.205.15.220/by
         x = requests.post(url, json=notice)
         break
