@@ -8,7 +8,7 @@ doc = lxml.html.fromstring(html.content)
 
 prev = doc.xpath(
     '//div[@class="container"]/div[@class="row"]//div[@class="col-sm-7"]/div[@class="bigBox"]/div[@class="bigBoxDiv"]/ul[@class="ENABox Events"]/li/a'
-)[1]
+)[0]
 
 print("running")
 while True:
