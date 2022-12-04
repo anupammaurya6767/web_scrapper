@@ -20,18 +20,18 @@ while True:
                 '//div[@class="container"]/div[@class="row"]//div[@class="col-sm-7"]/div[@class="bigBox"]/div[@class="bigBoxDiv"]/ul[@class="ENABox Events"]/li/a/@href'
             )[0]
     html3 = requests.get("https://www.igdtuw.ac.in/"+prev_link)                                                             
-    doc2 = lxml.html.fromstring(html2.content)                                                                         
-    prev_release_data_link = doc2.xpath('//div[@class="headingPara"]//table[@class="facultyTable"]//a/@href')[0]
+    doc3 = lxml.html.fromstring(html3.content)                                                                         
+    prev_release_data_link = doc3.xpath('//div[@class="headingPara"]//table[@class="facultyTable"]//a/@href')[0]
     prev_notice = {                                                                                                         
                  "title": title,                                                                                                
                  "link": "https://www.igdtuw.ac.in/" + prev_release_data_link,                                                   
                  "tab": "Notices/Circulars"                                                                                     
              } 
     
-    url2 = 'http://20.205.15.220/last'
-    data2 = json.dumps(prev_notice)
-    x2 = requests.post(url2, json=prev_notice)
-    print(x2.text)
+    url3 = 'http://20.205.15.220/last'
+    data3 = json.dumps(prev_notice)
+    x3 = requests.post(url3, json=prev_notice)
+    print(x3.text)
     try:
         prev_hash = hash(prev)
         new_release = doc.xpath(
