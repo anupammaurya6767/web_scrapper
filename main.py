@@ -25,9 +25,9 @@ while True:
             "link": "https://www.igdtuw.ac.in/" + last_link,
             "tab": "Notices/Circulars"
         }
-        url3 = 'http://20.205.15.220/last'
-        x3 = requests.post(url3, json=last_notice)
-        print(x3.text)
+#         url3 = 'http://20.205.15.220/last'
+#         x3 = requests.post(url3, json=last_notice)
+#         print(x3.text)
         print(last_notice)
     except Exception as e:
         print(e)
