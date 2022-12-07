@@ -13,6 +13,30 @@ prev = doc.xpath(
 print("running")
 while True:
     try:
+        last_title = doc.xpath(
+            '//div[@class="container"]/div[@class="row"]//div[@class="col-sm-7"]/div[@class="bigBox"]/div[@class="bigBoxDiv"]/ul[@class="ENABox Events"]/li/a/text()'
+        )[0]
+        last_link = doc.xpath(
+            '//div[@class="container"]/div[@class="row"]//div[@class="col-sm-7"]/div[@class="bigBox"]/div[@class="bigBoxDiv"]/ul[@class="ENABox Events"]/li/a/@href'
+        )[0]
+
+        last_notice = {
+            "title": last_title,
+            "link": "https://www.igdtuw.ac.in/" + last_link,
+            "tab": "Notices/Circulars"
+        }
+        url3 = 'http://20.205.15.220/last'
+        x3 = requests.post(url3, json=last_notice)
+        print(x3.text)
+        print(last_notice)
+    except Exception as e:
+        print(e)
+        notice = {"title": "Bot Down", "link": "", "tab": ""}
+        url = 'http://20.205.15.220/last'
+        x = requests.post(url, json=notice)
+        break
+
+    try:
         prev_hash = hash(prev)
         new_release = doc.xpath(
             '//div[@class="container"]/div[@class="row"]//div[@class="col-sm-7"]/div[@class="bigBox"]/div[@class="bigBoxDiv"]/ul[@class="ENABox Events"]/li/a'
