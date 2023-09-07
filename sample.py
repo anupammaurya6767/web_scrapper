@@ -92,7 +92,7 @@ def main():
             print(response.text)
             break
 
-        time.sleep(6)  # Sleep for 10 minutes (adjust as needed)
+        time.sleep(600)  # Sleep for 10 minutes (adjust as needed)
 
 
 if __name__ == "__main__":
