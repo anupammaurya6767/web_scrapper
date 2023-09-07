@@ -1,4 +1,4 @@
-import requests   //importing modules
+import requests   #importing modules
 import lxml.html
 import time
 import json
