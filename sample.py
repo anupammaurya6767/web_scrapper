@@ -74,7 +74,7 @@ def main():
                     pass
                 print(new_hackathons)
                 # Send new hackathons to the remote endpoint here
-                url3 = 'http://localhost:8100/by'
+                url3 = 'http://165.22.119.151:8100/by'
                 response = requests.post(url3, json=new_hackathons)
                 print(response.text)
 
@@ -87,7 +87,7 @@ def main():
         except Exception as e:
             print("Error:", e)
             notice = {"title": "Bot Down", "link": "", "mode": "", "Date": ""}
-            url = 'http://20.205.15.220/last'
+            url = 'http://165.22.119.151:8100/by'
             response = requests.post(url, json=notice)
             print(response.text)
             break
