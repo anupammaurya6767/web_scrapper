@@ -81,7 +81,7 @@ while True:
 
             new_hash = hash(new_release)
 
-        time.sleep(10)
+        time.sleep(10) #the program will run every 10 seconds.
         continue
 
     except Exception as e:
