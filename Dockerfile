@@ -20,4 +20,4 @@ WORKDIR /usr/app/src
 
 COPY . .
 
-CMD ["python", "main.py"]
+CMD ["python", "sample.py"]
