@@ -32,7 +32,7 @@ while True:
     except Exception as e:
         print(e)
         notice = {"title": "Bot Down", "link": "", "tab": ""}
-        url = 'http://20.205.15.220/last'
+        url = 'http://your_endpoint'
         x = requests.post(url, json=notice)
         break
 
@@ -65,7 +65,7 @@ while True:
                 "new_link":"https://www.igdtuw.ac.in/" + link,
                 "tab": "Notices/Circulars"
             }
-            url = 'http://20.205.15.220/by'
+            url = 'http://your_endpoint'
             data = json.dumps(notice)
             # x = requests.post(url, json=notice)
             # print(x.text)
@@ -87,6 +87,6 @@ while True:
     except Exception as e:
         print(e)
         notice = {"title": "Bot Down", "link": "", "tab": ""}
-        url = 'http://20.205.15.220/by'
+        url = 'http://your_endpoint'
         x = requests.post(url, json=notice)
         break
