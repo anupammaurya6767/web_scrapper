@@ -13,9 +13,11 @@ The repository follows a structured approach for organizing scraping scripts:
 ┣ 📂 site1 </br>
 ┃ ┣ 📜 script.py </br>
 ┃ ┗ 📜 README.md </br>
+┃ ┗ 📜 requirements.txt </br>
 ┣ 📂 site2 </br>
 ┃ ┣ 📜 script.py </br>
 ┃ ┗ 📜 README.md </br>
+┃ ┗ 📜 requirements.txt </br>
 ┗ ...
 
 
