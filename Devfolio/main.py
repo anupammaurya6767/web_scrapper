@@ -59,7 +59,7 @@ def main():
             current_hackathons = fetch_hackathons()
 
             # Check for new hackathons
-            new_hackathons = [hackathon for hackathon in current_hackathons if not hackathons_collection.find_one(hackathon)]
+            new_hackathons = [hackathon for hackathon in current_hackathons if not hackathons_collection.find_one({"title": hackathon["title"]})]
 
             if new_hackathons:
                 print("New hackathons found:")
