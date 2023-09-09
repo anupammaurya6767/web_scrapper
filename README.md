@@ -8,13 +8,13 @@ Welcome to our Anime-themed web scraping repository! This repository contains va
 
 The repository follows a structured approach for organizing scraping scripts:
 
-📦 anime-web-scraping-repo
-┣ 📂 site1
-┃ ┣ 📜 script.py
-┃ ┗ 📜 README.md
-┣ 📂 site2
-┃ ┣ 📜 script.py
-┃ ┗ 📜 README.md
+📦 anime-web-scraping-repo </br>
+┣ 📂 site1 </br>
+┃ ┣ 📜 script.py </br>
+┃ ┗ 📜 README.md </br>
+┣ 📂 site2 </br>
+┃ ┣ 📜 script.py </br>
+┃ ┗ 📜 README.md </br>
 ┗ ...
 
 
