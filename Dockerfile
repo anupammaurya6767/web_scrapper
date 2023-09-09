@@ -11,11 +11,9 @@ RUN export PATH=${PATH}:/usr/bin/python3.7
 RUN /bin/bash -c "source ~/.bashrc"
 
 # Install pip
-RUN apt-get install -y python3-pip
-RUN python -m pip install --upgrade pip
-RUN pip install requests
-RUN pip install lxml
-RUN pip install pymongo
+RUN apt-get install -y python3-pip && \
+    python -m pip install --upgrade pip && \
+    python -m pip install -r requirements.txt
 
 WORKDIR /usr/app/src
 
