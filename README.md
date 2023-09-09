@@ -1,3 +1,14 @@
+<!-- PROJECT SHIELDS -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![GPL-3.0 license][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+
+
+
 # 🌟 Web Scrapper 🌟
 <img align='right' src="https://github.com/anupammaurya6767/web_scrapper/blob/main/assets/tan.jpg" alt="Tanjiro-sama" width="300" height="400">
 Welcome to our web scrapping repository! This repository contains various scraping scripts using modules like lxml, BeautifulSoup, and Selenium to gather data from different  websites. 🎉
@@ -69,3 +80,19 @@ Once you've made your changes and pushed them to your forked repository, create 
 We'll review your contribution and merge it if it aligns with the repository's goals.
 
 Thank you for contributing to our Web Scrapper Repository! 🙌
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/anupammaurya6767/web-scrapper.svg?style=for-the-badge
+[contributors-url]: https://github.com/anupammaurya6767/web-scrapper/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/anupammaurya6767/web-scrapper.svg?style=for-the-badge
+[forks-url]: https://github.com/anupammaurya6767/web-scrapper/network/members
+[stars-shield]: https://img.shields.io/github/stars/anupammaurya6767/web-scrapper.svg?style=for-the-badge
+[stars-url]: https://github.com/anupammaurya6767/web-scrapper/stargazers
+[issues-shield]: https://img.shields.io/github/issues/anupammaurya6767/web-scrapper.svg?style=for-the-badge
+[issues-url]: https://github.com/anupammaurya6767/web-scrapper/issues
+[license-shield]: https://img.shields.io/github/license/anupammaurya6767/web-scrapper.svg?style=for-the-badge
+[license-url]: https://github.com/anupammaurya6767/web-scrapper/blob/main/LICENSE
+
+
