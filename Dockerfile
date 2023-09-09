@@ -15,6 +15,7 @@ RUN apt-get install -y python3-pip
 RUN python -m pip install --upgrade pip
 RUN pip install requests
 RUN pip install lxml
+RUN pip install pymongo
 
 WORKDIR /usr/app/src
 
