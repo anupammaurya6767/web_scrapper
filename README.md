@@ -36,7 +36,7 @@ If you encounter issues with the existing code, or if you have suggestions for i
 To start contributing, fork this repository to your GitHub account, and then clone it to your local machine.
 
 ```bash
-git clone https://github.com/your-username/anime-web-scraping-repo.git
+git clone https://github.com/anupammaurya6767/web_scrapper.git
 ```
 
 ### 3. Create a New Feature Branch
