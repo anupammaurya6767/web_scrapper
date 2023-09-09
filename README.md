@@ -2,7 +2,7 @@
 
 Welcome to our web scrapping repository! This repository contains various scraping scripts using modules like lxml, BeautifulSoup, and Selenium to gather data from different  websites. 🎉
 
-![Anime Girl](https://example.com/anime-girl-image.png)
+![Anime Girl]([https://example.com/anime-girl-image.png](https://github.com/anupammaurya6767/web_scrapper/blob/main/assets/tan.jpg))
 
 ## 📁 Directory Structure
 
