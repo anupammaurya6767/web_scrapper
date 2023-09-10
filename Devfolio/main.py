@@ -1,96 +1,110 @@
-import requests
-import lxml.html
-import time
+import aiohttp
+import asyncio
+import logging
 import json
+import os
 from pymongo import MongoClient
+from lxml import html
+from datetime import datetime
 
-# Replace these placeholders with your actual MongoDB URL and database name
-MONGODB_URL = 'YOUR_MONGODB_URL_HERE'
-DATABASE_NAME = 'YOUR_DATABASE_NAME_HERE'
+# Configure logging
+logging.basicConfig(filename='scraper.log', level=logging.INFO, format='%(asctime)s - %(levelname)s: %(message)s')
+
+# Load configuration from environment variables or a config file
+MONGODB_URL = os.getenv('MONGODB_URL', 'mongodb://localhost:27017/')
+DATABASE_NAME = os.getenv('DATABASE_NAME', 'hackathons_db')
+ENDPOINT_URL = os.getenv('ENDPOINT_URL', 'http://localhost:8000/api/hackathons')
 
 # Initialize MongoDB client and database
 client = MongoClient(MONGODB_URL)
 db = client[DATABASE_NAME]
 hackathons_collection = db['prev_hackathons']
 
-def fetch_hackathons():
-    url = 'https://devfolio.co/hackathons'
-    html = requests.get(url)
-    doc = lxml.html.fromstring(html.content)
+async def fetch_hackathons(url):
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                response.raise_for_status()
+                content = await response.text()
 
-    div_elements = doc.xpath(
-        '//div[@class="sc-iWajrY sc-bKhNmF hackathons__StyledGrid-sc-fa04e7f9-0  bhEyGM GLpDs"]//div[@class="sc-egNfGp yTbeG CompactHackathonCard__StyledCard-sc-4a10fa2a-0 ihpCnk"]')
+        doc = html.fromstring(content)
+        
+        # Extracting hackathons data
+        hackathons = []
+        hackathon_elements = doc.xpath('//div[@class="sc-xyzabc"]')  # Replace with the actual XPath
+        
+        for element in hackathon_elements:
+            title = element.xpath('.//h3[@class="hackathon-title"]/text()')
+            link = element.xpath('.//a[@class="hackathon-link"]/@href')
+            mode = element.xpath('.//p[@class="hackathon-mode"]/text()')
+            date = element.xpath('.//div[@class="hackathon-date"]/text()')
+            
+            if title and link and mode and date:
+                hackathon_info = {
+                    "title": title[0].strip(),
+                    "link": link[0].strip(),
+                    "mode": mode[0].strip(),
+                    "Date": date[0].strip()
+                }
+                hackathons.append(hackathon_info)
 
-    hackathons = []
+        return hackathons
 
-    for div_element in div_elements:
-        title_element = div_element.find(
-            './/a[@class="Link__LinkBase-sc-af40de1d-0 lkflLS"]//h3[@class="sc-tQuYZ kHbpBI"]')
-        title = title_element.text_content() if title_element is not None else ""
+    except (aiohttp.ClientError, aiohttp.ClientConnectorError) as e:
+        logging.error(f"Error fetching hackathons: {e}")
 
-        link_element = div_element.find('.//a[@class="PillButton-sc-7655a019-0 kTVrbf"]')
-        link = link_element.get('href') if link_element is not None else ""
+async def send_hackathons_to_endpoint(hackathons):
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(ENDPOINT_URL, json=hackathons) as response:
+                response.raise_for_status()
+                logging.info("Successfully sent new hackathons to the endpoint.")
+    except aiohttp.ClientError as e:
+        logging.error(f"Error sending hackathons to the endpoint: {e}")
 
-        mode_element = div_element.find(
-            './/div[@class="sc-iWajrY deNxdR"]//p[@class="sc-tQuYZ EdbiX"]')
-        mode = mode_element.text_content() if mode_element is not None else ""
+def validate_hackathon_data(hackathon):
+    # Implement data validation logic here
+    # For example, you can check if certain fields are not empty or meet specific criteria
+    if hackathon["title"] and hackathon["link"] and hackathon["mode"] and hackathon["Date"]:
+        return True
+    return False
 
-        starts_element = div_element.find(
-            './/div[@class="sc-iWajrY sc-jKDlA-D  fIIKMx"]')
-        starts_fill = starts_element.text_content() if mode_element is not None else ""
-        starts = starts_fill[-8:]
-        if (starts[-5:] != "Ended"):
-            hackathon_info = {
-                "title": title.strip(),
-                "link": link.strip(),
-                "mode": mode.strip(),
-                "Date": starts.strip()
-            }
-
-            hackathons.append(hackathon_info)
-
-    return hackathons
-
-def main():
-    print("Running...")
+async def main():
+    logging.info("Running...")
 
     while True:
         try:
-            current_hackathons = fetch_hackathons()
+            hackathons = await fetch_hackathons('https://devfolio.co/hackathons')
 
-            # Check for new hackathons
-            new_hackathons = [hackathon for hackathon in current_hackathons if not hackathons_collection.find_one({"title": hackathon["title"]})]
+            # Check for new hackathons and validate them
+            new_hackathons = [hackathon for hackathon in hackathons if validate_hackathon_data(hackathon) and not hackathons_collection.find_one({"title": hackathon["title"]})]
 
             if new_hackathons:
-                print("New hackathons found:")
+                logging.info("New hackathons found:")
                 for hackathon in new_hackathons:
                     pass
-                print(new_hackathons)
-                # Replace this placeholder with your actual endpoint URL
-                ENDPOINT_URL = 'YOUR_ENDPOINT_URL_HERE'
-                try:
-                    response = requests.post(ENDPOINT_URL, json=new_hackathons)
-                    response.raise_for_status()  # Raise an exception if the request fails (e.g., 4xx or 5xx status codes)
-                    print("Successfully sent new hackathons to the endpoint.")
-                except requests.exceptions.RequestException as request_error:
-                    print("Error sending hackathons to the endpoint:", request_error)
+                logging.info(new_hackathons)
+
+                # Send new hackathons to an endpoint asynchronously
+                await send_hackathons_to_endpoint(new_hackathons)
 
                 # Insert new hackathons into MongoDB
                 hackathons_collection.insert_many(new_hackathons)
 
             else:
-                print("No new updates")
+                logging.info("No new updates")
 
         except Exception as e:
-            print("Error:", e)
-            notice = {"title": "Bot Down", "link": "", "mode": "", "Date": ""}
-            # Replace this placeholder with your actual endpoint URL
-            ENDPOINT_URL = 'YOUR_ENDPOINT_URL_HERE'
-            response = requests.post(ENDPOINT_URL, json=notice)
-            print(response.text)
-            break
+            logging.error(f"Error: {e}")
+            notice = {"title": "Bot Down", "link": "", "mode": "", "Date": datetime.now().isoformat()}
+            try:
+                await send_hackathons_to_endpoint(notice)
+                logging.info("Successfully sent notice to the endpoint.")
+            except aiohttp.ClientError as e:
+                logging.error(f"Error sending notice to the endpoint: {e}")
 
-        time.sleep(600)  # Sleep for 10 minutes (adjust as needed)
+        await asyncio.sleep(600)  # Sleep for 10 minutes (adjust as needed)
 
 if __name__ == "__main__":
-    main()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
