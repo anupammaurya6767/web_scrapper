@@ -1,4 +1,4 @@
-module instagram_scraper
+module Instagram
 
 go 1.16
 
