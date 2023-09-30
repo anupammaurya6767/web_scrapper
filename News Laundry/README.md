@@ -1,6 +1,6 @@
 # News Laundry Data Scraper
 
-This Python script allows you to scrape news data from the News Laundry website and extract relevant information such as the "headline," "link," "image" and "Date." It uses the `requests` library to make HTTP requests and `Selenium` for HTML parsing.
+This Python script allows you to scrape news data from the News Laundry website and extract relevant information such as the "headline", "link", "image" and "Date". It uses the `requests` library to make HTTP requests and `Selenium` for HTML parsing.
 
 ## Prerequisites
 
