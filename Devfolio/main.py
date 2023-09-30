@@ -35,7 +35,7 @@ async def fetch_hackathons(url):
         
         for element in hackathon_elements:
             title = element.xpath('.//h3[@class="hackathon-title"]/text()')
-            link = element.xpath('.//a[@class="hackathon-link"]/@href')
+            link = element.xpath('.//button[@class="sc-iXxrte bRawMo"]/@href')
             mode = element.xpath('.//p[@class="hackathon-mode"]/text()')
             date = element.xpath('.//div[@class="hackathon-date"]/text()')
             
