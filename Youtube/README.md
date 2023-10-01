@@ -5,7 +5,7 @@ where it will get "Videos Title" ,"Views" and "Likes" of recently uploaded video
 
 ## Prerequisites
 
-1.Selenium
-2.BeautifulSoup
-3.lxml
+1.Selenium<br />
+2.BeautifulSoup<br />
+3.lxml<br />
 4.pandas
