@@ -24,5 +24,6 @@ def results(channelname):
             likes.append(viewsandlikes[i])
     df=pd.DataFrame({"Videos Title":Videos,"Views":totalviews,"Likes":likes})
     df.to_csv(str(channelname)+"_info.csv",index=False)
+    return "CSV file created!!"
 
-results(input("Please enter a Youtube Channel: "))
+print(results(input("Please enter a Youtube Channel: ")))

@@ -1,0 +1,4 @@
+beautifulSoup
+selenium
+lxml
+pandas
