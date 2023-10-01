@@ -1,4 +1,4 @@
-# MyAnimeList Scraper 
+# GeeksforGeeks Scraper 
 
 ## Overview
 
