@@ -1,0 +1,30 @@
+# Import SpeechRecognition library
+import speech_recognition as sr
+
+def transcribe_audio_to_text():
+    # Initialize recognizer class (for recognizing the speech)
+    recognizer = sr.Recognizer()
+
+    # Begin capturing audio input
+    with sr.Microphone() as audio_source:
+        print("Please speak, I'm listening...")
+
+        # Record the audio data while you speak, for a maximum of 5 seconds
+        audio_data = recognizer.record(audio_source, duration=5)
+
+        # Inform the user that audio capture is complete, and processing will start
+        print("Thanks for speaking! Now let me transcribe that for you...")
+
+        try:
+            # Use Google Web Speech API to convert the speech to text
+            transcribed_text = recognizer.recognize_google(audio_data)
+            
+            # Print out the transcribed text
+            print("Your spoken words: ", transcribed_text)
+        
+        except Exception as ex:
+            # Handle exception if speech is not understood
+            print("Sorry, I was not able to understand what you said. Error : ", str(ex))
+
+# Call the function
+transcribe_audio_to_text()
