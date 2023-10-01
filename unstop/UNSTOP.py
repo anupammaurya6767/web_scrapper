@@ -16,9 +16,9 @@ hackathons_collection = db['prev_hackathons']
 # hackathons_collection = []
 path = r"E:\dd\chromedriver-win64\chromedriver-win64\chromedriver.exe"  #set path for web driver
 options = Options()
-options.add_argument("--window-size=1920x1080")
-options.add_argument("--verbose")
-# options.add_argument("--headless=new")            #implementing headless to work without extra window
+# options.add_argument("--window-size=1920x1080")
+# options.add_argument("--verbose")
+options.add_argument("--headless=new")            #implementing headless to work without extra window
 browser = webdriver.Chrome(executable_path=path,options=options)
 
 browser.get("https://unstop.com/hackathons")
