@@ -87,7 +87,7 @@ def main():
             except requests.exceptions.RequestException as request_error:
                 print("Error sending news to the endpoint:", request_error)
 
-             # Insert new hackathons into MongoDB
+             # Insert nsong details into MongoDB
             # song_link.insert_many(song_details)
             print(song_details)
             break
