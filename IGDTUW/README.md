@@ -1,4 +1,4 @@
-# Devfolio Hackathon Data Scraper
+# IGDTUW Notice Scrapper
 
 This Python script allows you to scrape notices data from the IGDTUW website and extract relevant information such as the "title of notice," "link." It uses the `requests` library to make HTTP requests and `lxml` for HTML parsing.
 
