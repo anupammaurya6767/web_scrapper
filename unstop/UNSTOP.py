@@ -152,13 +152,6 @@ def main():             #main program
             browser.quit()
             break
 
-
-# for hack in hackathons:
-#     print("name:",hack[0])
-#     print("place:",hack[1])
-#     print("mod:",hack[2])
-#     print("link:",hack[3])
-#     print("price:",hack[4])
 if __name__ == "__main__":
     main()
 
