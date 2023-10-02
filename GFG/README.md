@@ -1,4 +1,4 @@
-# GeeksForGeeks Scraper 
+# GeeksforGeeks Scraper 
 
 ## Overview
 
